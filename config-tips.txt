@@ -1,0 +1,112 @@
+
+[NEAT]
+# objetivo do jogo, chegar mais longe possivel (max)
+fitness_criterion     = max
+# limite para não ficar aprendendo infinitamente
+fitness_threshold     = 1000
+# tamanho da população
+pop_size              = 100
+# lança error se extiguir todas as gerações (especie) se Falso
+# se True cria uma especie nova se nunca conseguir
+reset_on_extinction   = False
+
+[DefaultGenome]
+# node activation options
+# função de ativação do nó
+activation_default      = tanh
+# teste outra função? se 0.0 não
+activation_mutate_rate  = 0.0
+activation_options      = tanh
+
+# node aggregation options
+# como agregar os caminhos? os nos, soma
+aggregation_default     = sum
+# teste outra agregação? se 0.0 não
+aggregation_mutate_rate = 0.0
+aggregation_options     = sum
+
+# node bias options
+# bias --> numero aleatorio
+# media em geral vai ser 0
+bias_init_mean          = 0.0
+# desvio padrao 1
+bias_init_stdev         = 1.0
+bias_max_value          = 30.0
+bias_min_value          = -30.0
+# força da mutação, se 0.5 se teve um aumento de 10 no bias, aumenta 5 só
+bias_mutate_power       = 0.5
+# chance de ter uma mudanção no bias por Rede neural
+bias_mutate_rate        = 0.7
+# chance de ter um novo valor aleatorio em vez de calcular baseado nos bias antigo 
+bias_replace_rate       = 0.1
+
+# genome compatibility options
+# como vai juntar as IA em especie
+compatibility_disjoint_coefficient = 1.0
+compatibility_weight_coefficient   = 0.5
+
+# connection add/remove rates
+# prob de adicionar ou rev uma conexão (excluir ou adicionar novas linhas (caminhos))
+conn_add_prob           = 0.5
+conn_delete_prob        = 0.5
+
+# connection enable options
+# se true não cria conexoões inativas 
+enabled_default         = True
+enabled_mutate_rate     = 0.01
+
+# ordem que a rede é alimentada, alimentando sempre pra frente (esq pra direita)
+feed_forward            = True
+#  todos os nos de imput vai ta conectado ao output inicialmente
+initial_connection      = full
+
+# node add/remove rates
+# prob de adicionar uma nó/conexao nova
+node_add_prob           = 0.2
+node_delete_prob        = 0.2
+
+# network parameters
+# configurar o numero de input e output e os no intermediario iniciais
+num_hidden              = 0
+num_inputs              = 3
+num_outputs             = 1
+
+# node response options
+# numero que o nó vai multiplicar, valor do nó pelo numero random
+response_init_mean      = 1.0
+response_init_stdev     = 0.0
+response_max_value      = 30.0
+response_min_value      = -30.0
+response_mutate_power   = 0.0
+response_mutate_rate    = 0.0
+response_replace_rate   = 0.0
+
+# connection weight options
+# peso das conexões (linhas)
+weight_init_mean        = 0.0
+weight_init_stdev       = 1.0
+weight_max_value        = 30
+weight_min_value        = -30
+weight_mutate_power     = 0.5
+weight_mutate_rate      = 0.8
+weight_replace_rate     = 0.1
+
+[DefaultSpeciesSet]
+# definir especie de uma população, grao de compatibilidade
+# especie iguais, estruturas semelhantes
+# aparti desse valor nova especie
+compatibility_threshold = 3.0
+
+[DefaultStagnation]
+# oque a especie tem como objetivo, maximar algo
+species_fitness_func = max
+# se a mesma especie n evoluir em 20 gerações (não chegar no max), especie estagnou, mata
+max_stagnation       = 20
+# se isso acontecer com toda a população, manter duas especie
+species_elitism      = 2
+
+[DefaultReproduction]
+# quantos individios vao passar para proxima geração sem sofrer alterações
+elitism            = 2
+# percentual de uma especie que pode se reproduzir pra proxima geração seguinte (para uma especia x não predominar)
+survival_threshold = 0.2
